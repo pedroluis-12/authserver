@@ -41,10 +41,33 @@ Este projeto é um servidor de autenticação desenvolvido com Spring Boot, Spri
 *   `service`: Lógica de negócio para gerenciamento de usuários e autenticação.
 *   `repository`: Interfaces para acesso a dados.
 
-## Endpoints Principais (Exemplos)
+## Endpoints Principais
 
-*   `POST /auth/register`: Registrar um novo usuário.
-*   `POST /auth/login`: Autenticar um usuário e receber um JWT.
-*   `GET /users/me`: Exemplo de endpoint protegido que retorna informações do usuário autenticado.
+### RoleController
+*   `POST /roles`: Cria uma nova role.
+*   `GET /roles`: Lista todas as roles.
+
+### UserController
+*   `GET /users`: Lista todos os usuários.
+*   `POST /users`: Cria um novo usuário.
+*   `POST /users/login`: Autentica um usuário e retorna um JWT.
+*   `GET /users/{id}`: Retorna um usuário pelo ID.
+*   `PATCH /users/{id}`: Atualiza um usuário pelo ID.
+*   `DELETE /users/{id}`: Deleta um usuário pelo ID.
+*   `PUT /users/{id}/roles/{role}`: Adiciona uma role a um usuário.
+
+### LoanController
+*   `POST /loans`: Cria um novo empréstimo.
+*   `GET /loans/{id}`: Retorna um empréstimo pelo ID.
+*   `GET /loans`: Lista todos os empréstimos com filtros opcionais.
+*   `PUT /loans/{id}`: Atualiza um empréstimo pelo ID.
+*   `DELETE /loans/{id}`: Deleta um empréstimo pelo ID.
+
+### BookController
+*   `POST /books`: Cria um novo livro.
+*   `GET /books/{id}`: Retorna um livro pelo ID.
+*   `GET /books`: Lista todos os livros com filtros opcionais.
+*   `PUT /books/{id}`: Atualiza um livro pelo ID.
+*   `DELETE /books/{id}`: Deleta um livro pelo ID.
 
 Para detalhes específicos sobre a implementação, consulte o código-fonte nos pacotes mencionados.
