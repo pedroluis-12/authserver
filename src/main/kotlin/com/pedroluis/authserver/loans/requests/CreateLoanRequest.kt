@@ -7,7 +7,7 @@ data class CreateLoanRequest(
     @NotNull
     val bookId: Long?,
 
-    @NotNull // Adicionando o userId
+    @NotNull
     val userId: Long?,
 
     val loanDate: LocalDate? = LocalDate.now()

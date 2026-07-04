@@ -5,7 +5,7 @@ import com.pedroluis.authserver.exceptions.NotFoundException
 import com.pedroluis.authserver.exceptions.BadRequestException
 import com.pedroluis.authserver.loans.requests.CreateLoanRequest
 import com.pedroluis.authserver.loans.requests.UpdateLoanRequest
-import com.pedroluis.authserver.users.UserRepository // Importar UserRepository
+import com.pedroluis.authserver.users.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -17,7 +17,7 @@ import java.time.LocalDate
 class LoanService(
     private val loanRepository: LoanRepository,
     private val bookRepository: BookRepository,
-    private val userRepository: UserRepository // Injetar UserRepository
+    private val userRepository: UserRepository
 ) {
     private val log = LoggerFactory.getLogger(javaClass)
 
@@ -26,7 +26,7 @@ class LoanService(
         val book = bookRepository.findById(data.bookId!!)
             .orElseThrow { NotFoundException("Book ${data.bookId} not found!") }
 
-        val user = userRepository.findById(data.userId!!) // Buscar o usuário
+        val user = userRepository.findById(data.userId!!)
             .orElseThrow { NotFoundException("User ${data.userId} not found!") }
 
         if (!book.available) {
@@ -38,7 +38,7 @@ class LoanService(
 
         val loan = Loan(
             book = book,
-            user = user, // Associar o usuário ao empréstimo
+            user = user,
             loanDate = data.loanDate ?: LocalDate.now()
         )
         return loanRepository.save(loan)
@@ -49,7 +49,7 @@ class LoanService(
 
     fun findAll(
         bookTitle: String?,
-        userName: String?, // Adicionar filtro por nome de usuário
+        userName: String?,
         loanDate: LocalDate?,
         returnDate: LocalDate?,
         pageable: Pageable
@@ -61,7 +61,7 @@ class LoanService(
             bookTitle?.let {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get<String>("book").get("title")), "%${it.lowercase()}%"))
             }
-            userName?.let { // Adicionar predicado para nome de usuário
+            userName?.let {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get<String>("user").get("name")), "%${it.lowercase()}%"))
             }
             loanDate?.let {
@@ -85,7 +85,7 @@ class LoanService(
                 throw BadRequestException("Return date cannot be before loan date.")
             }
             loan.returnDate = it
-            loan.book.available = true // Mark book as available upon return
+            loan.book.available = true
             bookRepository.save(loan.book)
         }
 

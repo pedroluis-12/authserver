@@ -7,8 +7,8 @@ data class LoanResponse(
     val id: Long?,
     val bookId: Long?,
     val bookTitle: String,
-    val userId: Long?, // Adicionando o ID do usuário
-    val userName: String, // Adicionando o nome do usuário
+    val userId: Long?,
+    val userName: String,
     val loanDate: LocalDate,
     val returnDate: LocalDate?
 ) {
@@ -16,8 +16,8 @@ data class LoanResponse(
         id = loan.id,
         bookId = loan.book.id,
         bookTitle = loan.book.title,
-        userId = loan.user.id, // Obtendo o ID do usuário da entidade Loan
-        userName = loan.user.name, // Obtendo o nome do usuário da entidade Loan
+        userId = loan.user.id,
+        userName = loan.user.name,
         loanDate = loan.loanDate,
         returnDate = loan.returnDate
     )
