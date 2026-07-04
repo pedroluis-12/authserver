@@ -80,4 +80,7 @@ Este projeto é um servidor de autenticação desenvolvido com Spring Boot, Spri
 *   `PUT /books/{id}`: Atualiza um livro pelo ID.
 *   `DELETE /books/{id}`: Deleta um livro pelo ID.
 
+## Vídeo Explicativo Avatar S3
+https://youtu.be/sEgPdEcoeBE
+
 Para detalhes específicos sobre a implementação, consulte o código-fonte nos pacotes mencionados.
