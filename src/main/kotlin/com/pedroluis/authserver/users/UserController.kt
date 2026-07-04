@@ -72,6 +72,21 @@ class UserController(val service: UserService) {
         @PathVariable id: Long
     ) = service.delete(id)
 
+    @SecurityRequirement(name = "jwt-auth")
+    @DeleteMapping("/{id}/avatar")
+    fun resetAvatar(
+        @PathVariable id: Long,
+        auth: Authentication
+    ): ResponseEntity<UserResponse> {
+        val token = auth.principal as? UserToken ?: throw ForbiddenException()
+        if (token.id != id && !token.isAdmin) {
+            throw ForbiddenException("Resetting avatar is not allowed for other users")
+        }
+        return service.resetAvatar(id)
+            .let { UserResponse(it) }
+            .let { ResponseEntity.ok(it) }
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @SecurityRequirement(name = "jwt-auth")
     @PutMapping("/{id}/roles/{role}")

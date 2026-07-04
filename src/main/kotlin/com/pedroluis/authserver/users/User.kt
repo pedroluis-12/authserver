@@ -14,6 +14,7 @@ class User (
 
     var password: String,
     var name: String = "",
+    var avatarUrl: String? = null,
 
     @ManyToMany
     @JoinTable(

@@ -1,7 +1,7 @@
 package com.pedroluis.authserver.loans
 
 import com.pedroluis.authserver.books.Book
-import com.pedroluis.authserver.users.User // Importar a entidade User
+import com.pedroluis.authserver.users.User
 import jakarta.persistence.*
 import java.time.LocalDate
 

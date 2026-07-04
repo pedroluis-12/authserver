@@ -37,12 +37,12 @@ class LoanController(
     @PreAuthorize("isAuthenticated()")
     fun getAll(
         @RequestParam(required = false) bookTitle: String?,
-        @RequestParam(required = false) userName: String?, // Adicionando o parâmetro userName
+        @RequestParam(required = false) userName: String?,
         @RequestParam(required = false) loanDate: LocalDate?,
         @RequestParam(required = false) returnDate: LocalDate?,
         @PageableDefault(size = 10, sort = ["loanDate"]) pageable: Pageable
     ): ResponseEntity<List<LoanResponse>> =
-        service.findAll(bookTitle, userName, loanDate, returnDate, pageable) // Passando userName para o service
+        service.findAll(bookTitle, userName, loanDate, returnDate, pageable)
             .map { LoanResponse(it) }
             .let { ResponseEntity.ok(it.content) }
 
