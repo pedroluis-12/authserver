@@ -138,7 +138,8 @@ class UserService(
         }
 
         avatarBytes?.let {
-            val s3Path = "avatars/${user.id}.png"
+            val timestamp = System.currentTimeMillis()
+            val s3Path = "avatars/${user.id}-${timestamp}.png"
             val multipartFile = ByteArrayMultipartFile(it, "avatar.png", "image/png")
             s3Storage.save(user, s3Path, multipartFile)
             user.avatarUrl = s3Storage.urlFor(s3Path)
