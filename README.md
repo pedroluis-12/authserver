@@ -72,4 +72,5 @@ Este projeto é um servidor de autenticação desenvolvido com Spring Boot, Spri
 
 ## Vídeo Explicativo Book-Loan
 https://www.youtube.com/watch?v=uM9VjBmBTmg
+
 Para detalhes específicos sobre a implementação, consulte o código-fonte nos pacotes mencionados.
